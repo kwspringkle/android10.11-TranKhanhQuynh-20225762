@@ -18,16 +18,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var spinner2: Spinner
     private lateinit var tvCurrency: TextView
 
-    private val currencies = arrayOf("USD", "EUR", "VND", "JPY", "GBP", "AUD", "CNY")
+    private val currencies = arrayOf("USD", "VND", "JPY")
 
     // Tỷ giá so với USD
     private val exchangeRates = mapOf(
         "USD" to 1.0,
-        "EUR" to 0.8645,
         "VND" to 26000.0,
         "JPY" to 153.0,
-        "AUD" to 1.5392,
-        "CNY" to 7.1288
     )
 
     private var currentInput = ""
@@ -50,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         spinner2 = findViewById(R.id.spinner2)
         tvCurrency = findViewById(R.id.textView)
 
-
+        // Disable keyboard input
         etNumber1.isFocusable = false
         etNumber2.isFocusable = false
     }
@@ -61,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         spinner1.adapter = adapter
         spinner2.adapter = adapter
-        spinner2.setSelection(2) //VND: default
+        spinner2.setSelection(2)
 
         spinner1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -81,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNumberPad() {
-        // Bàn phím
+        // Number buttons
         findViewById<Button>(R.id.button12).setOnClickListener { appendNumber("0") }
         findViewById<Button>(R.id.button9).setOnClickListener { appendNumber("1") }
         findViewById<Button>(R.id.button10).setOnClickListener { appendNumber("2") }
